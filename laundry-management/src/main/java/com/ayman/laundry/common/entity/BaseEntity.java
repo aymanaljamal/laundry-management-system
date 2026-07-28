@@ -1,5 +1,6 @@
 package com.ayman.laundry.common.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -24,16 +25,22 @@ public abstract class BaseEntity {
     // Audit Information
     // ===========================
 
-    @Column(nullable = false, updatable = false)
+    @Column(
+            nullable = false,
+            updatable = false
+    )
     private LocalDateTime createdAt;
+
 
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
 
+
     @Column(length = 100)
     private String createdBy;
+
 
 
     @Column(length = 100)
@@ -53,20 +60,25 @@ public abstract class BaseEntity {
     @PrePersist
     protected void onCreate(){
 
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+        LocalDateTime now = LocalDateTime.now();
 
-        if(deleted == null){
-            deleted = false;
+        this.createdAt = now;
+        this.updatedAt = now;
+
+        if(this.deleted == null){
+
+            this.deleted = false;
+
         }
 
     }
 
 
+
     @PreUpdate
     protected void onUpdate(){
 
-        updatedAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
 
     }
 

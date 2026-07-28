@@ -19,3 +19,9 @@ spring:
   docker:
     compose:
       enabled: false
+
+jwt:
+  secret: "QXltYW5MYXVuZHJ5TWFuYWdlbWVudFN5c3RlbVNlY3JldEtleUZvckpXVFRva2VuMjAyNg=="
+  expiration: 86400000
+  header: Authorization
+  token-prefix: "Bearer "
