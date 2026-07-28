@@ -3,6 +3,7 @@ package com.ayman.laundry.customer.entity;
 
 import com.ayman.laundry.common.entity.BaseEntity;
 import com.ayman.laundry.customer.enums.CustomerType;
+import com.ayman.laundry.order.entity.Order;
 import com.ayman.laundry.review.entity.Review;
 import com.ayman.laundry.tailoring.entity.TailoringOrder;
 import com.ayman.laundry.user.entity.User;
@@ -12,7 +13,6 @@ import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 @Entity
@@ -121,13 +121,52 @@ public class Customer extends BaseEntity {
     @Builder.Default
     private Integer loyaltyPoints = 0;
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+
+
+    // ===========================
+    // Laundry Orders
+    // ===========================
+
+
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @Builder.Default
+    private List<Order> orders = new ArrayList<>();
+
+
+
+    // ===========================
+    // Tailoring Orders
+    // ===========================
+
+
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @Builder.Default
+    private List<TailoringOrder> tailoringOrders = new ArrayList<>();
+
+
+
+    // ===========================
+    // Reviews
+    // ===========================
+
+
+    @OneToMany(
+            mappedBy = "customer",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     @Builder.Default
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-    @Builder.Default
-    private List<TailoringOrder> tailoringOrders = new ArrayList<>();
+
 
     // ===========================
     // Helper Methods
@@ -141,11 +180,13 @@ public class Customer extends BaseEntity {
     }
 
 
+
     public void activateCustomer(){
 
         this.active = true;
 
     }
+
 
 
     public void addLoyaltyPoints(Integer points){
@@ -159,6 +200,7 @@ public class Customer extends BaseEntity {
     }
 
 
+
     public void removeLoyaltyPoints(Integer points){
 
         if(points != null && points > 0){
@@ -166,6 +208,42 @@ public class Customer extends BaseEntity {
             this.loyaltyPoints -= points;
 
         }
+
+    }
+
+
+
+    public void addOrder(Order order){
+
+        orders.add(order);
+        order.setCustomer(this);
+
+    }
+
+
+
+    public void removeOrder(Order order){
+
+        orders.remove(order);
+        order.setCustomer(null);
+
+    }
+
+
+
+    public void addTailoringOrder(TailoringOrder tailoringOrder){
+
+        tailoringOrders.add(tailoringOrder);
+        tailoringOrder.setCustomer(this);
+
+    }
+
+
+
+    public void addReview(Review review){
+
+        reviews.add(review);
+        review.setCustomer(this);
 
     }
 

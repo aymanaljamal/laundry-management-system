@@ -1,0 +1,30 @@
+package com.ayman.laundry.order.repository;
+
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.ayman.laundry.order.entity.OrderItem;
+
+import java.util.List;
+
+
+@Repository
+public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
+
+
+    // Get all items for order
+    List<OrderItem> findByOrderId(Long orderId);
+
+
+
+    // Get items by cloth
+    List<OrderItem> findByClothId(Long clothId);
+
+
+
+    // Get items by service
+    List<OrderItem> findByServiceId(Long serviceId);
+
+
+}
