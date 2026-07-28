@@ -3,8 +3,10 @@ package com.ayman.laundry.order.entity;
 
 import com.ayman.laundry.common.entity.BaseEntity;
 import com.ayman.laundry.customer.entity.Customer;
+import com.ayman.laundry.delivery.entity.Delivery;
 import com.ayman.laundry.employee.entity.Employee;
 import com.ayman.laundry.invoice.entity.Invoice;
+import com.ayman.laundry.payment.entity.Payment;
 import com.ayman.laundry.order.enums.OrderStatus;
 import com.ayman.laundry.order.enums.PaymentStatus;
 
@@ -116,9 +118,7 @@ public class Order extends BaseEntity {
 
     private LocalDateTime receivedAt;
 
-
     private LocalDateTime completedAt;
-
 
     private LocalDateTime deliveredAt;
 
@@ -154,8 +154,47 @@ public class Order extends BaseEntity {
     @Builder.Default
     private List<OrderItem> items = new ArrayList<>();
 
-    @OneToOne(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+
+
+    // ===========================
+    // Invoice
+    // ===========================
+
+    @OneToOne(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
     private Invoice invoice;
+
+
+
+    // ===========================
+    // Payments
+    // ===========================
+
+    @OneToMany(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @Builder.Default
+    private List<Payment> payments = new ArrayList<>();
+
+
+
+    // ===========================
+    // Delivery
+    // ===========================
+
+    @OneToOne(
+            mappedBy = "order",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private Delivery delivery;
 
 
 
@@ -177,6 +216,15 @@ public class Order extends BaseEntity {
 
         items.remove(item);
         item.setOrder(null);
+
+    }
+
+
+
+    public void addPayment(Payment payment){
+
+        payments.add(payment);
+        payment.setOrder(this);
 
     }
 
