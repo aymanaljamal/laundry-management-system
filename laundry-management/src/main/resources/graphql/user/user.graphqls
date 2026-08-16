@@ -1,0 +1,58 @@
+# =========================================================
+# User Type
+# =========================================================
+
+type User {
+    id: ID!
+
+    firstName: String!
+    lastName: String!
+    fullName: String!
+
+    username: String!
+    email: String!
+    phoneNumber: String
+    profileImage: String
+    address: String
+    city: String
+
+    role: UserRole!
+    status: UserStatus!
+
+    enabled: Boolean!
+    accountNonExpired: Boolean!
+    accountNonLocked: Boolean!
+    credentialsNonExpired: Boolean!
+
+    failedLoginAttempts: Int!
+    lastLogin: DateTime
+    lastFailedLogin: DateTime
+    passwordChangedAt: DateTime
+    accountLockedUntil: DateTime
+
+    emailVerified: Boolean!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# User Enums
+# =========================================================
+
+enum UserRole {
+    ADMIN
+    EMPLOYEE
+    CUSTOMER
+}
+
+enum UserStatus {
+    ACTIVE
+    INACTIVE
+    SUSPENDED
+    BLOCKED
+}

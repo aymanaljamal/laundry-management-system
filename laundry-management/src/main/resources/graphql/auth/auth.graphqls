@@ -1,0 +1,36 @@
+# =========================================================
+# Authentication Mutations
+# =========================================================
+
+extend type Mutation {
+    login(input: LoginInput!): LoginPayload!
+}
+
+
+# =========================================================
+# Login Input
+# البيانات التي يرسلها المستخدم
+# =========================================================
+
+input LoginInput {
+    username: String!
+    password: String!
+}
+
+
+# =========================================================
+# Login Response
+# البيانات التي يعيدها السيرفر بعد نجاح تسجيل الدخول
+# =========================================================
+
+type LoginPayload {
+    token: String!
+    type: String!
+
+    id: ID!
+    username: String!
+    fullName: String!
+    email: String!
+    profileImage: String
+    role: String!
+}

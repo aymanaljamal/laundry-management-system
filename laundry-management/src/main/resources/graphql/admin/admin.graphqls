@@ -1,0 +1,39 @@
+# =========================================================
+# Admin Type
+# =========================================================
+
+type Admin {
+    id: ID!
+
+    user: User!
+
+    employeeNumber: String!
+    department: AdminDepartment!
+    position: AdminPosition!
+    superAdmin: Boolean!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Admin Enums
+# =========================================================
+
+enum AdminDepartment {
+    MANAGEMENT
+    OPERATIONS
+    FINANCE
+    HUMAN_RESOURCES
+    CUSTOMER_SERVICE
+}
+
+enum AdminPosition {
+    MANAGER
+    SUPERVISOR
+    ADMINISTRATOR
+}

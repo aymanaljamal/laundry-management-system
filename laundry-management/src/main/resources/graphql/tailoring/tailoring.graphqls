@@ -1,0 +1,122 @@
+# =========================================================
+# Tailoring Order Type
+# =========================================================
+
+type TailoringOrder {
+    id: ID!
+
+    customer: Customer!
+    assignedTailor: Employee
+
+    orderNumber: String!
+    status: TailoringStatus!
+    description: String
+
+    totalAmount: BigDecimal!
+    paidAmount: BigDecimal!
+
+    paymentStatus: PaymentStatus!
+    paymentMethod: TailoringPaymentMethod!
+
+    pickupType: TailoringPickupType!
+    deliveryAddress: String
+
+    pickupDate: DateTime
+    receivedAt: DateTime
+    completedAt: DateTime
+
+    measurements: [Measurement!]!
+    alterations: [Alteration!]!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Measurement Type
+# =========================================================
+
+type Measurement {
+    id: ID!
+
+    tailoringOrder: TailoringOrder!
+
+    chest: Float!
+    waist: Float!
+    shoulder: Float!
+    sleeveLength: Float!
+    height: Float!
+
+    notes: String
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Alteration Type
+# =========================================================
+
+type Alteration {
+    id: ID!
+
+    tailoringOrder: TailoringOrder!
+
+    type: AlterationType!
+    description: String
+    price: BigDecimal!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Tailoring Enums
+# =========================================================
+
+enum TailoringStatus {
+    PENDING
+    RECEIVED
+    IN_PROGRESS
+    READY
+    COMPLETED
+    DELIVERED
+    CANCELLED
+}
+
+enum TailoringPaymentMethod {
+    CASH
+    CREDIT_CARD
+    DEBIT_CARD
+    BANK_TRANSFER
+    ONLINE
+}
+
+enum TailoringPickupType {
+    IN_STORE
+    DELIVERY
+}
+
+enum AlterationType {
+    SHORTENING
+    LENGTHENING
+    TIGHTENING
+    WIDENING
+    ZIPPER_REPLACEMENT
+    BUTTON_REPLACEMENT
+    REPAIR
+    CUSTOM
+    OTHER
+}

@@ -1,0 +1,46 @@
+# =========================================================
+# Notification Type
+# =========================================================
+
+type Notification {
+    id: ID!
+
+    user: User!
+    order: Order
+    tailoringOrder: TailoringOrder
+
+    title: String!
+    message: String!
+
+    type: NotificationType!
+    status: NotificationStatus!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Notification Enums
+# =========================================================
+
+enum NotificationType {
+    GENERAL
+    ORDER_CREATED
+    ORDER_STATUS_UPDATED
+    ORDER_READY
+    ORDER_COMPLETED
+    PAYMENT_COMPLETED
+    DELIVERY_ASSIGNED
+    DELIVERY_COMPLETED
+    TAILORING_ORDER_UPDATED
+    ACCOUNT
+}
+
+enum NotificationStatus {
+    UNREAD
+    READ
+}

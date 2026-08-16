@@ -1,0 +1,35 @@
+# =========================================================
+# Laundry Service Type
+# =========================================================
+
+type LaundryService {
+    id: ID!
+
+    name: String!
+    type: ServiceType!
+    description: String
+
+    price: BigDecimal!
+    active: Boolean!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Service Enums
+# =========================================================
+
+enum ServiceType {
+    WASHING
+    DRY_CLEANING
+    IRONING
+    WASHING_AND_IRONING
+    STAIN_REMOVAL
+    EXPRESS
+    OTHER
+}

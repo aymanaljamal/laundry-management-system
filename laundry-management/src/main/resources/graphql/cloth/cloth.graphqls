@@ -1,0 +1,39 @@
+# =========================================================
+# Cloth Type
+# =========================================================
+
+type Cloth {
+    id: ID!
+
+    name: String!
+    category: ClothCategory!
+    basePrice: BigDecimal!
+    active: Boolean!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Cloth Enums
+# =========================================================
+
+enum ClothCategory {
+    SHIRT
+    T_SHIRT
+    TROUSERS
+    DRESS
+    SUIT
+    JACKET
+    COAT
+    SKIRT
+    ABAYA
+    BLANKET
+    CURTAIN
+    CARPET
+    OTHER
+}

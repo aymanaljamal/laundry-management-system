@@ -1,0 +1,109 @@
+# =========================================================
+# Employee Type
+# =========================================================
+
+type Employee {
+    id: ID!
+
+    user: User!
+
+    employeeNumber: String!
+    position: EmployeePosition!
+    department: EmployeeDepartment!
+
+    hireDate: Date!
+    terminationDate: Date
+
+    shift: EmployeeShift!
+    salary: BigDecimal!
+    status: EmployeeStatus!
+
+    tasks: [EmployeeTask!]!
+    tailoringOrders: [TailoringOrder!]!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Employee Task Type
+# =========================================================
+
+type EmployeeTask {
+    id: ID!
+
+    employee: Employee!
+    order: Order!
+
+    taskType: EmployeeTaskType!
+    status: EmployeeTaskStatus!
+
+    startedAt: DateTime
+    completedAt: DateTime
+    notes: String
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Employee Enums
+# =========================================================
+
+enum EmployeePosition {
+    MANAGER
+    SUPERVISOR
+    LAUNDRY_WORKER
+    TAILOR
+    DELIVERY_DRIVER
+    CASHIER
+    RECEPTIONIST
+}
+
+enum EmployeeDepartment {
+    LAUNDRY
+    TAILORING
+    DELIVERY
+    CUSTOMER_SERVICE
+    FINANCE
+    MANAGEMENT
+}
+
+enum EmployeeShift {
+    MORNING
+    EVENING
+    NIGHT
+}
+
+enum EmployeeStatus {
+    ACTIVE
+    INACTIVE
+    ON_LEAVE
+    SUSPENDED
+    TERMINATED
+}
+
+enum EmployeeTaskType {
+    WASHING
+    DRYING
+    IRONING
+    FOLDING
+    PACKAGING
+    DELIVERY
+    OTHER
+}
+
+enum EmployeeTaskStatus {
+    PENDING
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
+}

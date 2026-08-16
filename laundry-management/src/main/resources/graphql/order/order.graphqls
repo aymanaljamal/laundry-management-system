@@ -1,0 +1,84 @@
+# =========================================================
+# Laundry Order Type
+# =========================================================
+
+type Order {
+    id: ID!
+
+    customer: Customer!
+    assignedEmployee: Employee
+
+    orderNumber: String!
+    status: OrderStatus!
+    paymentStatus: OrderPaymentStatus!
+
+    totalAmount: BigDecimal!
+    paidAmount: BigDecimal
+
+    receivedAt: DateTime
+    completedAt: DateTime
+    deliveredAt: DateTime
+
+    pickupAddress: String
+    pickupDate: DateTime
+    requiresDelivery: Boolean!
+
+    items: [OrderItem!]!
+    invoice: Invoice
+    payments: [Payment!]!
+    delivery: Delivery
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Order Item Type
+# =========================================================
+
+type OrderItem {
+    id: ID!
+
+    order: Order!
+    cloth: Cloth!
+    service: LaundryService!
+
+    quantity: Int!
+    unitPrice: BigDecimal!
+    totalPrice: BigDecimal!
+
+    notes: String
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Order Enums
+# =========================================================
+
+enum OrderStatus {
+    PENDING
+    RECEIVED
+    PROCESSING
+    READY
+    COMPLETED
+    OUT_FOR_DELIVERY
+    DELIVERED
+    CANCELLED
+}
+
+enum OrderPaymentStatus {
+    UNPAID
+    PARTIALLY_PAID
+    PAID
+    REFUNDED
+}

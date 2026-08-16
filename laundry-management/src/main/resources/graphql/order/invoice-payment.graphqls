@@ -1,0 +1,80 @@
+# =========================================================
+# Invoice Type
+# =========================================================
+
+type Invoice {
+    id: ID!
+
+    order: Order!
+
+    invoiceNumber: String!
+
+    subtotal: BigDecimal!
+    discountAmount: BigDecimal!
+    taxAmount: BigDecimal!
+    totalAmount: BigDecimal!
+
+    issuedAt: DateTime
+    status: InvoiceStatus!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Payment Type
+# =========================================================
+
+type Payment {
+    id: ID!
+
+    order: Order!
+
+    amount: BigDecimal!
+    method: PaymentMethod!
+    status: PaymentStatus!
+    paidAt: DateTime
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Invoice Enums
+# =========================================================
+
+enum InvoiceStatus {
+    DRAFT
+    ISSUED
+    PAID
+    CANCELLED
+}
+
+
+# =========================================================
+# Payment Enums
+# =========================================================
+
+enum PaymentMethod {
+    CASH
+    CREDIT_CARD
+    DEBIT_CARD
+    BANK_TRANSFER
+    ONLINE
+}
+
+enum PaymentStatus {
+    PENDING
+    COMPLETED
+    FAILED
+    REFUNDED
+    CANCELLED
+}
