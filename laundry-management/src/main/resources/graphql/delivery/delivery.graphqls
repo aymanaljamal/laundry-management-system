@@ -1,0 +1,45 @@
+# =========================================================
+# Delivery Type
+# =========================================================
+
+type Delivery {
+    id: ID!
+
+    order: Order!
+    deliveryEmployee: Employee
+
+    type: DeliveryType!
+    status: DeliveryStatus!
+
+    deliveryAddress: String
+    customerPhone: String
+
+    pickupTime: DateTime
+    deliveredTime: DateTime
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Delivery Enums
+# =========================================================
+
+enum DeliveryType {
+    PICKUP
+    DELIVERY
+    PICKUP_AND_DELIVERY
+}
+
+enum DeliveryStatus {
+    PENDING
+    ASSIGNED
+    PICKED_UP
+    OUT_FOR_DELIVERY
+    DELIVERED
+    CANCELLED
+}

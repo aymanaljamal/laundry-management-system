@@ -1,0 +1,19 @@
+# =========================================================
+# Review Type
+# =========================================================
+
+type Review {
+    id: ID!
+
+    customer: Customer!
+    order: Order!
+
+    rating: Int!
+    comment: String
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}

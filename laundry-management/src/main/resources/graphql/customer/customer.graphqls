@@ -1,0 +1,39 @@
+# =========================================================
+# Customer Type
+# =========================================================
+
+type Customer {
+    id: ID!
+
+    user: User
+
+    customerNumber: String!
+    fullName: String!
+    phoneNumber: String!
+    address: String
+    city: String
+
+    type: CustomerType!
+    active: Boolean!
+    loyaltyPoints: Int!
+
+    orders: [Order!]!
+    tailoringOrders: [TailoringOrder!]!
+    reviews: [Review!]!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Customer Enums
+# =========================================================
+
+enum CustomerType {
+    INDIVIDUAL
+    BUSINESS
+}

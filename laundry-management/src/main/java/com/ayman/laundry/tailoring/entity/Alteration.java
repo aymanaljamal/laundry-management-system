@@ -1,23 +1,12 @@
 package com.ayman.laundry.tailoring.entity;
 
-import java.math.BigDecimal;
-
 import com.ayman.laundry.common.entity.BaseEntity;
 import com.ayman.laundry.tailoring.enums.AlterationType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "alterations")
@@ -28,17 +17,40 @@ import lombok.Setter;
 @Builder
 public class Alteration extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tailoring_order_id", nullable = false)
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "tailoring_order_id",
+            nullable = false
+    )
     private TailoringOrder tailoringOrder;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(
+            name = "type",
+            nullable = false,
+            length = 50
+    )
     private AlterationType type;
 
-    @Column(length = 2000)
+    @Column(
+            name = "description",
+            length = 2000
+    )
     private String description;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
+    @Column(
+            name = "price",
+            nullable = false,
+            precision = 10,
+            scale = 2
+    )
+    @Builder.Default
+    private BigDecimal price = BigDecimal.ZERO;
+
+    public void setTailoringOrder(TailoringOrder tailoringOrder) {
+        this.tailoringOrder = tailoringOrder;
+    }
 }

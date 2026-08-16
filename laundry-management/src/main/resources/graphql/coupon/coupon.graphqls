@@ -1,0 +1,29 @@
+# =========================================================
+# Coupon Type
+# =========================================================
+
+type Coupon {
+    id: ID!
+
+    code: String!
+    type: CouponType!
+    value: BigDecimal!
+    expiryDate: DateTime!
+    active: Boolean!
+
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    createdBy: String
+    updatedBy: String
+    deleted: Boolean!
+}
+
+
+# =========================================================
+# Coupon Enums
+# =========================================================
+
+enum CouponType {
+    PERCENTAGE
+    FIXED_AMOUNT
+}

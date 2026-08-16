@@ -2,46 +2,75 @@ package com.ayman.laundry.tailoring.entity;
 
 import com.ayman.laundry.common.entity.BaseEntity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import jakarta.persistence.*;
+import lombok.*;
 
 @Entity
 @Table(name = "measurements")
 @Getter
-@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Measurement extends BaseEntity {
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "tailoring_order_id", nullable = false, unique = true)
+    @ManyToOne(
+            fetch = FetchType.LAZY,
+            optional = false
+    )
+    @JoinColumn(
+            name = "tailoring_order_id",
+            nullable = false
+    )
     private TailoringOrder tailoringOrder;
 
-    @Column(nullable = false)
+    @Column(
+            name = "chest",
+            nullable = false
+    )
+    @Setter
     private Double chest;
 
-    @Column(nullable = false)
+    @Column(
+            name = "waist",
+            nullable = false
+    )
+    @Setter
     private Double waist;
 
-    @Column(nullable = false)
+    @Column(
+            name = "shoulder",
+            nullable = false
+    )
+    @Setter
     private Double shoulder;
 
-    @Column(nullable = false)
+    @Column(
+            name = "sleeve_length",
+            nullable = false
+    )
+    @Setter
     private Double sleeveLength;
 
-    @Column(nullable = false)
+    @Column(
+            name = "height",
+            nullable = false
+    )
+    @Setter
     private Double height;
 
-    @Column(length = 2000)
+    @Column(
+            name = "notes",
+            length = 2000
+    )
+    @Setter
     private String notes;
+
+    public void setTailoringOrder(
+            TailoringOrder tailoringOrder
+    ) {
+        this.tailoringOrder = tailoringOrder;
+    }
+
+
+    
 }

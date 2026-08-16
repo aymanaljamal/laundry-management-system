@@ -1,10 +1,6 @@
 package com.ayman.laundry.security.dto;
 
-
 import lombok.*;
-
-import java.time.LocalDateTime;
-
 
 @Getter
 @Setter
@@ -13,41 +9,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class LoginResponse {
 
-
     private String token;
 
-
-    private String type;
-
+    @Builder.Default
+    private String type = "Bearer";
 
     private Long id;
-
-
     private String username;
-
-
     private String fullName;
-
-
     private String email;
-
-
-    private String phoneNumber;
-
-
     private String profileImage;
-
-
     private String role;
-
-
-    private String status;
-
-
-    private LocalDateTime lastLogin;
-
-
-    private Integer failedLoginAttempts;
-
-
 }
